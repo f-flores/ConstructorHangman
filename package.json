@@ -1,0 +1,23 @@
+{
+  "name": "ConstructorHangman",
+  "version": "1.0.0",
+  "description": "Advanced Javascript Constructor Hangman",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f-flores/ConstructorHangman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/f-flores/ConstructorHangman/issues"
+  },
+  "homepage": "https://github.com/f-flores/ConstructorHangman#readme",
+  "dependencies": {
+    "inquirer": "^5.2.0"
+  }
+}
