@@ -58,6 +58,10 @@
           console.log("charPresent: " + charPresent);
           if (!charPresent) {
             wrongGuessCount++;
+            console.log("INCORRECT!");
+            console.log(MAX_GUESSES - wrongGuessCount, " guesses remaining.");
+          } else {
+            console.log("CORRECT!");
           }
           playHangman();
       });
