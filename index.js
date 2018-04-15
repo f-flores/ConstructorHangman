@@ -21,7 +21,7 @@
       hangmanWord = new Word(wordBank[randNum]);
 
   console.log("Word chosen: " + hangmanWord.hword);
-  console.log("Word: " + wordBank[randNum]);
+  hangmanWord.toLetterArray();
 
   // --------------------------------------------------------------------------------------------- 
   // checks for valid alphabetic character, input is in lower case 
@@ -46,11 +46,11 @@
             }
           }
         }
-      // After the prompt, check guess against the word
+      // After the prompt, check character guess against the word
       ]).then(function(answer) {
           var charPresent = false;
 
-          hangmanWord.toLetterArray();
+          // hangmanWord.toLetterArray();
           charPresent = hangmanWord.processGuess(answer.letterGuess);
           // hangmanWord.toString();
           console.log(hangmanWord.arrayLetters.join(" "));
