@@ -49,13 +49,11 @@
       // After the prompt, check guess against the word
       ]).then(function(answer) {
           var charPresent = false;
-          // console.log("letterGuessed: " + answer.letterGuess);
-          // hangmanWord.processGuess(answer.letterGuess.toString());
+
           hangmanWord.toLetterArray();
           charPresent = hangmanWord.processGuess(answer.letterGuess);
-          hangmanWord.toString();
+          // hangmanWord.toString();
           console.log(hangmanWord.arrayLetters.join(" "));
-          console.log("charPresent: " + charPresent);
           if (!charPresent) {
             wrongGuessCount++;
             console.log("INCORRECT!");

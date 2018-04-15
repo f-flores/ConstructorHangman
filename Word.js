@@ -35,7 +35,7 @@ Word.prototype.toLetterArray = function() {
   }
   this.arrayLetters = arr;
 
-  return arr;
+  return arr.join("");
 };
 
 
