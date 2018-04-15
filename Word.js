@@ -13,8 +13,11 @@ var Letter = require("./Letter.js");
 var Word = function(hword) {
   this.hword = hword;
 
-// An array of new Letter objects representing the letters of the underlying word
+  // An array of new Letter objects representing the letters of the underlying word
   this.arrayLetters = [];
+
+  // An array of characters containing wrong guesses
+  this.incorrectGuesses = [];
 
 };
 
@@ -48,7 +51,11 @@ Word.prototype.processGuess = function(ch) {
     if (ltr.isCorrectGuess(ch)){
       letterInWord = true;
     }
-    // console.log("in processGuess ltr: " + ltr);
+  }
+
+  if (!letterInWord) {
+    this.incorrectGuesses.push(ch);
+    console.log("processGuess incorrectGuesses: " + this.incorrectGuesses.join(", "));
   }
   return letterInWord;
 };

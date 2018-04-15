@@ -32,6 +32,7 @@
   }
 
   var playHangman = function() {
+
     if (wrongGuessCount < MAX_GUESSES && hangmanWord.arrayLetters.join("") !== hangmanWord.hword) {
       inquirer.prompt([
         {
@@ -40,7 +41,11 @@
           message: "Guess a letter!",
           validate: function(value) {
             if (validAlphaChar(value)) {
-              return true;
+              if (hangmanWord.incorrectGuesses.indexOf(value) === -1) {
+                return true;
+              } else {
+                return "Already guessed " + value + ". Try another letter.";
+              }
             } else {
               return "Invalid input. Please enter character from a to z.";
             }
@@ -50,9 +55,7 @@
       ]).then(function(answer) {
           var charPresent = false;
 
-          // hangmanWord.toLetterArray();
           charPresent = hangmanWord.processGuess(answer.letterGuess);
-          // hangmanWord.toString();
           console.log(hangmanWord.arrayLetters.join(" "));
           if (!charPresent) {
             wrongGuessCount++;
