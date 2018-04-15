@@ -26,7 +26,8 @@ var Word = function(hword) {
 // the character or an underscore and concatenate those together.
 //
 Word.prototype.toLetterArray = function() {
-  var arr = this.arrayLetters;
+  var arr = [];
+  // this.arrayLetters;
 
   for (const ch of this.hword) {
     var ltr = new Letter(ch);
