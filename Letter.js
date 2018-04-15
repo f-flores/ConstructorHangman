@@ -22,6 +22,8 @@ Letter.prototype.toString = function() {
 
   if (this.correctGuess) {
     return currentGuess;
+  } else if (this.letter === " ") {
+    return " ";
   }
 
   return "_";
@@ -32,7 +34,7 @@ Letter.prototype.toString = function() {
 // underlying character updating the stored boolean value to true if it was guessed correctly
 //
 Letter.prototype.isCorrectGuess = function(ch) {
-  if (ch === this.letter) {
+  if (ch.toUpperCase() === this.letter.toUpperCase()) {
     this.correctGuess = true;
     return true;
   } 

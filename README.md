@@ -20,7 +20,7 @@ However, in order to successfully run this app, a few programs must be already i
 
 3. Now we are ready to clone this app by running the following command. `git clone git@github.com:f-flores/ConstructorHangman.git`
 
-4. Since this file makes use of various node modules, please run
+4. Since this file makes use of a couple of node modules, namely `inquirer` and `colors` please run
 
 `npm install`
 

@@ -16,8 +16,8 @@ var Word = function(hword) {
   // An array of new Letter objects representing the letters of the underlying word
   this.arrayLetters = [];
 
-  // An array of characters containing wrong guesses
-  this.incorrectGuesses = [];
+  // An array of characters containing all current game's valid guesses
+  this.arrayGuesses = [];
 
 };
 
@@ -28,10 +28,11 @@ var Word = function(hword) {
 //
 Word.prototype.toLetterArray = function() {
   var arr = [];
-  // this.arrayLetters;
 
   for (const ch of this.hword) {
-    var ltr = new Letter(ch);
+    var ltr;
+
+    ltr= new Letter(ch);
     arr.push(ltr);
   }
   this.arrayLetters = arr;
@@ -53,10 +54,8 @@ Word.prototype.processGuess = function(ch) {
     }
   }
 
-  if (!letterInWord) {
-    this.incorrectGuesses.push(ch);
-    console.log("processGuess incorrectGuesses: " + this.incorrectGuesses.join(", "));
-  }
+  this.arrayGuesses.push(ch);
+
   return letterInWord;
 };
 

@@ -9,12 +9,14 @@
   const MAX_GUESSES = 10;
 
   var inquirer = require("inquirer");
+  var colors = require("colors");
   var Word = require("./Word.js");
-  var wordBank = [
+/*   var wordBank = [
                     "helicopter","table","laptop","pretzel","sports",
                     "tank","entertainment","computer","factory","machinery",
                     "baseball","car","door","paradise","javascript"
-                  ];
+                  ]; */
+  var wordBank = ["Jurassic Park"];
 
   var wrongGuessCount = 0,
       randNum = Math.floor(Math.random() * wordBank.length),
@@ -41,13 +43,14 @@
           message: "Guess a letter!",
           validate: function(value) {
             if (validAlphaChar(value)) {
-              if (hangmanWord.incorrectGuesses.indexOf(value) === -1) {
+              if (hangmanWord.arrayGuesses.indexOf(value) === -1) {
                 return true;
               } else {
-                return "Already guessed " + value + ". Try another letter.";
+                return "Already guessed ".underline.bold.red + value + 
+                       ". Try another letter.".underline.bold.red;
               }
             } else {
-              return "Invalid input. Please enter character from a to z.";
+              return "Invalid input. Please enter character from a to z.".underline.bold.red;
             }
           }
         }
@@ -56,21 +59,21 @@
           var charPresent = false;
 
           charPresent = hangmanWord.processGuess(answer.letterGuess);
-          console.log(hangmanWord.arrayLetters.join(" "));
           if (!charPresent) {
             wrongGuessCount++;
-            console.log("INCORRECT!");
+            console.log("INCORRECT!".red);
             console.log(MAX_GUESSES - wrongGuessCount, " guesses remaining.");
           } else {
-            console.log("CORRECT!");
+            console.log("CORRECT!".green);
+            console.log(hangmanWord.arrayLetters.join(" "));
           }
           playHangman();
       });
     } else {
       if (wrongGuessCount === MAX_GUESSES) {
-        console.log("Sorry, you lost!");
+        console.log("Sorry, you lost!".bold.yellow);
       } else if (hangmanWord.arrayLetters.join("") === hangmanWord.hword) {
-        console.log("Congratulations, you won!");
+        console.log("Congratulations, you won!".bold.blue);
       }
     }
   };
