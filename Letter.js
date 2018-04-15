@@ -40,6 +40,4 @@ Letter.prototype.isCorrectGuess = function(ch) {
   return false;
 };
 
-
-
 module.exports = Letter;

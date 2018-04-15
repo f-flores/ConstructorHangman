@@ -7,8 +7,6 @@
 
 var Letter = require("./Letter.js");
 
-var hangmanWord;
-
 // Word.js: Contains a constructor, Word that depends on the Letter constructor. This is used to create an 
 // object representing the current word the user is attempting to guess. That means the constructor should
 // define:
@@ -45,25 +43,15 @@ Word.prototype.toLetterArray = function() {
 // function on each letter object (the second function defined in Letter.js)
 //
 Word.prototype.processGuess = function(ch) {
+  var letterInWord = false;
+
   for (const ltr of this.arrayLetters) {
-    ltr.isCorrectGuess(ch);
+    if (ltr.isCorrectGuess(ch)){
+      letterInWord = true;
+    }
     // console.log("in processGuess ltr: " + ltr);
   }
+  return letterInWord;
 };
 
-hangmanWord = new Word("helicopter");
-
-// when concatenating with a string, JavaScript automatically calls `toString`
-console.log(hangmanWord.hword);
-hangmanWord.toLetterArray();
-
-hangmanWord.processGuess("h");
-// hangmanWord.toString();
-// console.log(hangmanWord.hword);
-console.log(hangmanWord.arrayLetters.join(" "));
-
-hangmanWord.processGuess("p");
-console.log(hangmanWord.arrayLetters.join(" "));
-// console.log(hangmanWord.hword);
-// hangmanWord.toString();
-
+module.exports = Word;
