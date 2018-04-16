@@ -32,10 +32,12 @@
     return ch.match(/^[a-z]+$/i) !== null;
   }
 
-  // console.log("Word chosen: " + hangmanWord.hword);
   hangmanWord.toLetterArray();
   console.log(hangmanWord.arrayLetters.join(" "));
 
+  // --------------------------------------------------------------------------------------------- 
+  // playHangman() is the main function which takes in user input and performs game logic
+  //
   var playHangman = function() {
 
     if (wrongGuessCount < MAX_GUESSES && hangmanWord.arrayLetters.join("") !== hangmanWord.hword) {
