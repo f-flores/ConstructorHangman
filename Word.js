@@ -1,15 +1,13 @@
 // ===============================================================================================
 //
 // File name: Word.js
-// Description: Word Constructor.
+// Description: Word Constructor, depends on the Letter constructor. This is used to create an 
+// object representing the current word the user is attempting to guess. 
 //
 // ===============================================================================================
 
 var Letter = require("./Letter.js");
 
-// Word.js: Contains a constructor, Word that depends on the Letter constructor. This is used to create an 
-// object representing the current word the user is attempting to guess. That means the constructor should
-// define:
 var Word = function(hword) {
   this.hword = hword;
 

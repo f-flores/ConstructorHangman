@@ -6,6 +6,10 @@ Advanced Javascript Constructor Hangman
 
 `node ./index.js` - initiates a Hangman game
 
+## Description
+
+This terminal based app uses javascript constructor functions to implement a hangman word guessing game.
+
 ## Installation
 
 This app can be cloned using git.

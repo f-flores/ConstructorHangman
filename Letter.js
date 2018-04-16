@@ -6,6 +6,7 @@
 // ===============================================================================================
 
 var Letter = function(lch) {
+
   this.letter = lch;
   this.correctGuess = false;
 

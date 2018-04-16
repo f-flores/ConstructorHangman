@@ -1,7 +1,10 @@
 // ===============================================================================================
 //
 // File name: index.js
-// Description: File name.
+// Author: Fabian Flores
+// Description: Implementation of hangman game, using inquirer prompt and Word and Letter
+//  constructor functions.
+// Date: April, 2018
 //
 // ===============================================================================================
 
@@ -11,27 +14,27 @@
   var inquirer = require("inquirer");
   var colors = require("colors");
   var Word = require("./Word.js");
-/*   var wordBank = [
-                    "helicopter","table","laptop","pretzel","sports",
-                    "tank","entertainment","computer","factory","machinery",
-                    "baseball","car","door","paradise","javascript"
-                  ]; */
-  var wordBank = ["Jurassic Park"];
+  var wordBank = [
+                    "helicopter","table","laptop","pretzel","sports","Jurassic Park","python","The Doors",
+                    "tank","entertainment","computer","factory","machinery","Wheel of Fortune","coding",
+                    "baseball","car","doorway","paradise","javascript","New Jersey","Rutgers","New York Giants","California Angels","highway","Frank Sinatra","lullaby","ventriloquist","debug","garbage collection","console","spotify","twitter","application interface"
+                  ];
 
   var wrongGuessCount = 0,
       randNum = Math.floor(Math.random() * wordBank.length),
       hangmanWord = new Word(wordBank[randNum]);
 
-  console.log("Word chosen: " + hangmanWord.hword);
-  hangmanWord.toLetterArray();
-
   // --------------------------------------------------------------------------------------------- 
-  // checks for valid alphabetic character, input is in lower case 
+  // validAlphaChar() checks for valid alphabetic character, input is in lower case 
   //  source: https://lowrey.me/test-if-a-string-is-alphanumeric-in-javascript/
   //
   function validAlphaChar(ch){
     return ch.match(/^[a-z]+$/i) !== null;
   }
+
+  // console.log("Word chosen: " + hangmanWord.hword);
+  hangmanWord.toLetterArray();
+  console.log(hangmanWord.arrayLetters.join(" "));
 
   var playHangman = function() {
 
@@ -75,8 +78,47 @@
       } else if (hangmanWord.arrayLetters.join("") === hangmanWord.hword) {
         console.log("Congratulations, you won!".bold.blue);
       }
+      // see if user wants to play again
+      promptPlayAgain();
     }
   };
+
+  // --------------------------------------------------------------------------------------------- 
+  // promptPlayAgain() runs an inquirer prompt to see if user wants to play again
+  //
+  function promptPlayAgain(){
+    inquirer.prompt([
+      {
+        type: "list",
+        name: "playAgain",
+        message: "Do you want to play again?",
+        choices: ["Yes", "No"]
+      }
+    // After the prompt, check user's answer
+    ]).then(function(response) {
+      switch (response.playAgain) {
+        case "Yes":
+          // reinitialize variables for next game
+          wrongGuessCount = 0;
+          randNum = Math.floor(Math.random() * wordBank.length);
+          hangmanWord = new Word(wordBank[randNum]);
+          hangmanWord.toLetterArray();
+          console.log("Next word:");
+          console.log(hangmanWord.arrayLetters.join(" "));
+          playHangman();
+          break;
+        case "No":
+          console.log("Thank you for playing!");
+          break;
+        default:
+          console.log("Invalid option.");
+          break;
+      }
+    });
+
+  }
+
+  // start off hangman game
   playHangman();
 
 })();
